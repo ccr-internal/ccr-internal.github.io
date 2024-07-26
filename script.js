@@ -57,6 +57,7 @@ function processCSV(t){
     empArr.pop();
     //loop through employees, calculate hours
     empArr.forEach((emp) => {
+        console.log(emp[0][8]);
         //name: [0] | ID: [2] | in day,time: [4,5] | out day,time: [6,7] | dept: [8]
         if(emp[0][8] === "\"Office\""){
             let h = 0;
@@ -168,6 +169,10 @@ function processCSV(t){
             });
             th = dh + eh + nh + dhe + ehe + nhe;
             let pay = dh*(payArr[emp[0][2]]) + eh*(0.25+payArr[emp[0][2]]) + nh*(0.5+payArr[emp[0][2]]) + dhe*(0.25+payArr[emp[0][2]]) + ehe*(0.5+payArr[emp[0][2]]) + nhe*(0.75+payArr[emp[0][2]]);
+            //round pay to nearest cent
+            pay*=100;
+            pay = Math.round(pay);
+            pay*=0.01;
             output += "name: " + emp[0][0] + " | ID: " + emp[0][2] + " | total hours: " + th + " | pay: " + pay + "\n";
         }
         if(emp[0][8] === "\"Nurse\""){
