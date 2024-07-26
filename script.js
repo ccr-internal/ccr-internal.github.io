@@ -276,6 +276,10 @@ function processCSV(t){
             });
             th = dh + eh + nh + dhe + ehe + nhe;
             let pay = dh*(payArr[emp[0][2]]) + eh*(0.75+payArr[emp[0][2]]) + nh*(1+payArr[emp[0][2]]) + dhe*(0.5+payArr[emp[0][2]]) + ehe*(1+payArr[emp[0][2]]) + nhe*(1.5+payArr[emp[0][2]]);
+            //round pay to nearest cent
+            pay *= 100;
+            pay = Math.round(pay);
+            pay *= 0.01;
             output += "name: " + emp[0][0] + " | ID: " + emp[0][2] + " | total hours: " + th + " | pay: " + pay + "\n";
         }
     });
